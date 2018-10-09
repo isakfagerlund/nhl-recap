@@ -54,7 +54,7 @@ class Game extends Component {
     return (
       <div>
         <Text>{title.replace('Condensed Game:', '').replace('@', 'VS')}</Text>
-        <GameDetails videoTitle={title} />
+        {/* <GameDetails videoTitle={title} /> */}
         <Thumbnail
           className="gameThumbnail"
           onClick={
