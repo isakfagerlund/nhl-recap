@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-
 import kebabCase from 'lodash/kebabCase';
-import { slugifyName } from '../../../../helpers/teams';
-import '../../../../../public/nhl-sprite.css';
 import '../../../../index.css';
 
 const Container = styled.div``;
@@ -23,10 +20,12 @@ class TeamTitle extends Component {
     const { teamOne, teamTwo } = this.props;
     return (
       <Container>
+        <img src={require('../../../../../public/logos/devils.svg')} />
         <TeamName>{teamOne.name.toUpperCase()}</TeamName>
         <br />
         <TeamVersus>VS</TeamVersus>
         <br />
+        <img src={require('../../../../../public/logos/islanders.svg')} />
         <TeamName>{teamTwo.name.toUpperCase()}</TeamName>
       </Container>
     );
