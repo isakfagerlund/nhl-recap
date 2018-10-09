@@ -15,7 +15,7 @@ const Text = styled.p`
 const Thumbnail = styled.div`
   border-radius: 4px;
   cursor: pointer;
-  height: 270px;
+  height: 175px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,6 +27,7 @@ const Thumbnail = styled.div`
 const Image = styled.img`
   height: auto;
   width: 100%;
+  margin-top: 75px;
 
   @media (min-width: 600px) {
     height: 360px;

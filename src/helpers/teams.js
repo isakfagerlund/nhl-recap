@@ -254,4 +254,4 @@ export function findByName(name) {
   return teamObject || { name };
 }
 
-export default { teams };
+export default teams;
