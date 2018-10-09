@@ -19,12 +19,18 @@ class TeamTitle extends Component {
     const { teamOne, teamTwo } = this.props;
     return (
       <Container>
-        <img src={require('../../../../../public/logos/devils.svg')} alt="First Team" />
+        <img
+          src={require('../../../../../public/logos/devils.svg')}
+          alt="First Team"
+        />
         <TeamName>{teamOne.name.toUpperCase()}</TeamName>
         <br />
         <TeamVersus>VS</TeamVersus>
         <br />
-        <img src={require('../../../../../public/logos/islanders.svg')} alt="Second Team" />
+        <img
+          src={require('../../../../../public/logos/islanders.svg')}
+          alt="Second Team"
+        />
         <TeamName>{teamTwo.name.toUpperCase()}</TeamName>
       </Container>
     );

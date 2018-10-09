@@ -12,3 +12,8 @@ body {
   font-family: 'NHL';
   src: local('NHL'), url(../public/fonts/NHL.ttf);
 }
+
+@font-face {
+  font-family: 'NHL';
+  src: local('NHL'), url(../public/fonts/NHL.ttf);
+}
