@@ -249,4 +249,9 @@ const teams = [
   },
 ];
 
-module.exports = { teams };
+export function findByName(name) {
+  const teamObject = teams.find(team => team.teamName === name);
+  return teamObject || { name };
+}
+
+export default teams;
