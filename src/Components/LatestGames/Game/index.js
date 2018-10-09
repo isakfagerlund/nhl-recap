@@ -37,6 +37,10 @@ const Image = styled.img`
 
 class Game extends Component {
 
+  // state = {
+  //   showVideo: false
+  // }
+
   constructor() {
     super();
     this.state = { showVideo: false };

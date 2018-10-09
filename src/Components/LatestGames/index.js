@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import Game from './Game'
-import loading from './loading.gif'
-import './style.css';
+import styled from 'styled-components'
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
 
 class LatestGames extends Component {
 
@@ -18,9 +23,9 @@ class LatestGames extends Component {
 
   render() {
     return (
-      <div className="LatestGames">
+      <Container>
         {this.state.videos.map(item => <Game key={item.id} id={item.id} title={item.snippet.title} thumbnail={item.snippet.thumbnails.high.url} videoId={item.snippet.resourceId.videoId} />)}
-      </div>
+      </Container>
     );
   }
 }
