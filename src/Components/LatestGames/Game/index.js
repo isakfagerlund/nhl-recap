@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
 import styled from 'styled-components';
+import GameDetails from '../GameDetails';
 
 const Text = styled.p`
   color: rgba(4, 15, 26, 0.7);
@@ -53,6 +54,7 @@ class Game extends Component {
     return (
       <div>
         <Text>{title.replace('Condensed Game:', '').replace('@', 'VS')}</Text>
+        <GameDetails videoTitle={title} />
         <Thumbnail
           className="gameThumbnail"
           onClick={
