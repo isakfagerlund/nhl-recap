@@ -32,7 +32,7 @@ const teams = [
     abbreviation: 'NYR',
     teamName: 'Rangers',
     shortName: 'NY Rangers',
-    logo: '',
+    logo: null,
   },
   {
     id: 4,
@@ -72,7 +72,7 @@ const teams = [
     abbreviation: 'MTL',
     teamName: 'Canadiens',
     shortName: 'Montréal',
-    logo: '',
+    logo: null,
   },
   {
     id: 9,
@@ -112,7 +112,7 @@ const teams = [
     abbreviation: 'TBL',
     teamName: 'Lightning',
     shortName: 'Tampa Bay',
-    logo: '',
+    logo: null,
   },
   {
     id: 15,
@@ -120,7 +120,7 @@ const teams = [
     abbreviation: 'WSH',
     teamName: 'Capitals',
     shortName: 'Washington',
-    logo: '',
+    logo: null,
   },
   {
     id: 16,
@@ -128,7 +128,7 @@ const teams = [
     abbreviation: 'CHI',
     teamName: 'Blackhawks',
     shortName: 'Chicago',
-    logo: '',
+    logo: null,
   },
   {
     id: 17,
@@ -136,7 +136,7 @@ const teams = [
     abbreviation: 'DET',
     teamName: 'Red Wings',
     shortName: 'Detroit',
-    logo: '',
+    logo: null,
   },
   {
     id: 18,
@@ -144,7 +144,7 @@ const teams = [
     abbreviation: 'NSH',
     teamName: 'Predators',
     shortName: 'Nashville',
-    logo: '',
+    logo: null,
   },
   {
     id: 19,
@@ -152,7 +152,7 @@ const teams = [
     abbreviation: 'STL',
     teamName: 'Blues',
     shortName: 'St Louis',
-    logo: '',
+    logo: null,
   },
   {
     id: 20,
@@ -160,7 +160,7 @@ const teams = [
     abbreviation: 'CGY',
     teamName: 'Flames',
     shortName: 'Calgary',
-    logo: '',
+    logo: null,
   },
   {
     id: 21,
@@ -168,7 +168,7 @@ const teams = [
     abbreviation: 'COL',
     teamName: 'Avalanche',
     shortName: 'Colorado',
-    logo: '',
+    logo: null,
   },
   {
     id: 22,
@@ -176,7 +176,7 @@ const teams = [
     abbreviation: 'EDM',
     teamName: 'Oilers',
     shortName: 'Edmonton',
-    logo: '',
+    logo: null,
   },
   {
     id: 23,
@@ -184,7 +184,7 @@ const teams = [
     abbreviation: 'VAN',
     teamName: 'Canucks',
     shortName: 'Vancouver',
-    logo: '',
+    logo: null,
   },
   {
     id: 24,
@@ -192,7 +192,7 @@ const teams = [
     abbreviation: 'ANA',
     teamName: 'Ducks',
     shortName: 'Anaheim',
-    logo: '',
+    logo: null,
   },
   {
     id: 25,
@@ -200,7 +200,7 @@ const teams = [
     abbreviation: 'DAL',
     teamName: 'Stars',
     shortName: 'Dallas',
-    logo: '',
+    logo: null,
   },
   {
     id: 26,
@@ -208,7 +208,7 @@ const teams = [
     abbreviation: 'LAK',
     teamName: 'Kings',
     shortName: 'Los Angeles',
-    logo: '',
+    logo: null,
   },
   {
     id: 28,
@@ -216,7 +216,7 @@ const teams = [
     abbreviation: 'SJS',
     teamName: 'Sharks',
     shortName: 'San Jose',
-    logo: '',
+    logo: null,
   },
   {
     id: 29,
@@ -224,7 +224,7 @@ const teams = [
     abbreviation: 'CBJ',
     teamName: 'Blue Jackets',
     shortName: 'Columbus',
-    logo: '',
+    logo: null,
   },
   {
     id: 30,
@@ -232,7 +232,7 @@ const teams = [
     abbreviation: 'MIN',
     teamName: 'Wild',
     shortName: 'Minnesota',
-    logo: '',
+    logo: null,
   },
   {
     id: 52,
@@ -240,7 +240,7 @@ const teams = [
     abbreviation: 'WPG',
     teamName: 'Jets',
     shortName: 'Winnipeg',
-    logo: '',
+    logo: null,
   },
   {
     id: 53,
@@ -248,7 +248,7 @@ const teams = [
     abbreviation: 'ARI',
     teamName: 'Coyotes',
     shortName: 'Arizona',
-    logo: '',
+    logo: null,
   },
   {
     id: 54,
@@ -256,7 +256,7 @@ const teams = [
     abbreviation: 'VGK',
     teamName: 'Golden Knights',
     shortName: 'Vegas',
-    logo: '',
+    logo: null,
   },
 ];
 
