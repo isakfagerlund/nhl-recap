@@ -3,7 +3,7 @@ body {
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Karla', sans-serif;
+  font-family: "Karla", sans-serif;
   background: #f2f5f7;
   color: #333;
 }
@@ -14,6 +14,6 @@ body {
 }
 
 @font-face {
-  font-family: 'NHL';
-  src: local('NHL'), url(../public/fonts/NHL.ttf);
+  font-family: "NHL";
+  src: local("NHL"), url(../assets/fonts/NHL.ttf);
 }

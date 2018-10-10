@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import '../../../../index.css';
+import DevilsLogo from '../../../../../assets/teamLogos/devils.svg';
 
 const Container = styled.div``;
 
@@ -13,7 +14,6 @@ const TeamVersus = styled(TeamName)`
   font-family: 'NHL', sans-serif;
   color: red;
 `;
-
 class TeamTitle extends Component {
   render() {
     const { teamOne, teamTwo } = this.props;

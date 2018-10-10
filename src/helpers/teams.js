@@ -1,3 +1,14 @@
+import DevilsLogo from '../../assets/teamLogos/devils.svg';
+import BruinsLogo from '../../assets/teamLogos/bruins.svg';
+import FlyersLogo from '../../assets/teamLogos/flyers.svg';
+import HurricanesLogo from '../../assets/teamLogos/hurricanes.svg';
+import IslandersLogo from '../../assets/teamLogos/islanders.svg';
+import MapleLeafsLogo from '../../assets/teamLogos/maple-leafs.svg';
+import PanthersLogo from '../../assets/teamLogos/panthers.svg';
+import PenguinsLogo from '../../assets/teamLogos/penguins.svg';
+import SabresLogo from '../../assets/teamLogos/sabres.svg';
+import SenatorsLogo from '../../assets/teamLogos/senators.svg';
+
 const teams = [
   {
     id: 1,
@@ -5,7 +16,7 @@ const teams = [
     abbreviation: 'NJD',
     teamName: 'Devils',
     shortName: 'New Jersey',
-    logo: '',
+    logo: DevilsLogo,
   },
   {
     id: 2,
@@ -13,7 +24,7 @@ const teams = [
     abbreviation: 'NYI',
     teamName: 'Islanders',
     shortName: 'NY Islanders',
-    logo: '',
+    logo: IslandersLogo,
   },
   {
     id: 3,
@@ -29,7 +40,7 @@ const teams = [
     abbreviation: 'PHI',
     teamName: 'Flyers',
     shortName: 'Philadelphia',
-    logo: '',
+    logo: FlyersLogo,
   },
   {
     id: 5,
@@ -37,7 +48,7 @@ const teams = [
     abbreviation: 'PIT',
     teamName: 'Penguins',
     shortName: 'Pittsburgh',
-    logo: '',
+    logo: PenguinsLogo,
   },
   {
     id: 6,
@@ -45,7 +56,7 @@ const teams = [
     abbreviation: 'BOS',
     teamName: 'Bruins',
     shortName: 'Boston',
-    logo: '',
+    logo: BruinsLogo,
   },
   {
     id: 7,
@@ -53,7 +64,7 @@ const teams = [
     abbreviation: 'BUF',
     teamName: 'Sabres',
     shortName: 'Buffalo',
-    logo: '',
+    logo: SabresLogo,
   },
   {
     id: 8,
@@ -69,7 +80,7 @@ const teams = [
     abbreviation: 'OTT',
     teamName: 'Senators',
     shortName: 'Ottawa',
-    logo: '',
+    logo: SenatorsLogo,
   },
   {
     id: 10,
@@ -77,7 +88,7 @@ const teams = [
     abbreviation: 'TOR',
     teamName: 'Maple Leafs',
     shortName: 'Toronto',
-    logo: '',
+    logo: MapleLeafsLogo,
   },
   {
     id: 12,
@@ -85,7 +96,7 @@ const teams = [
     abbreviation: 'CAR',
     teamName: 'Hurricanes',
     shortName: 'Carolina',
-    logo: '',
+    logo: HurricanesLogo,
   },
   {
     id: 13,
@@ -93,7 +104,7 @@ const teams = [
     abbreviation: 'FLA',
     teamName: 'Panthers',
     shortName: 'Florida',
-    logo: '',
+    logo: PanthersLogo,
   },
   {
     id: 14,
