@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Provider from './Provider';
 import LatestGames from './Components/LatestGames';
 
 const Container = styled.div`
@@ -8,9 +9,11 @@ const Container = styled.div`
 class App extends Component {
   render() {
     return (
-      <Container>
-        <LatestGames />
-      </Container>
+      <Provider>
+        <Container>
+          <LatestGames />
+        </Container>
+      </Provider>
     );
   }
 }

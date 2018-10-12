@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createContext, Fragment } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import posed, { PoseGroup } from 'react-pose';
