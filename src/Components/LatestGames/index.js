@@ -5,10 +5,29 @@ import posed, { PoseGroup } from 'react-pose';
 import Game from './Game';
 import teams from '../../helpers/teams';
 
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const Wrapper = styled.div`
+  text-align: center;
+`;
+
+const VideoContainer = styled.div`
+  margin-left: 40px;
+  margin-right: 40px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 40px;
+
+  @media (min-width: 800px){
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 75px;
+    margin-top: 10px;
+    margin-left: 75px;
+    margin-right: 75px;
+  }
+
+  @media (min-width: 1100px){
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+  }
+
 `;
 
 const Select = styled.select`
@@ -17,8 +36,13 @@ const Select = styled.select`
 `;
 
 const Button = styled.button`
-  margin-top: 15px;
+  width: 250px;
+  height: 30px;
+  margin: 20px;
   display: inline-block;
+  text-align: center;
+  border-radius: 4px;
+  border: 0;
 `;
 
 const PoseItem = posed.div({
@@ -74,23 +98,25 @@ class LatestGames extends Component {
   render() {
     const { videos, initState, spoiler } = this.state;
     return (
-      <Container>
+      <Wrapper>
         <Select onChange={e => this.favoriteTeam(e)}>{teams.map(team => <option key={team.id} value={team.teamName}>{team.name}</option>)}</Select>
         {!initState ? <Button onClick={this.resetTeams}>Reset</Button> : null}
         {spoiler ? <p>Showing Spoiler Games</p> : <Button onClick={this.getSpoilerGames}>Change to spoiler games</Button>}
-        <PoseGroup>
-          {videos.map(item => (
-            <PoseItem key={item.id}>
-              <Game
-                id={item.id}
-                title={item.snippet.title}
-                thumbnail={item.snippet.thumbnails.high.url}
-                videoId={item.snippet.resourceId.videoId}
-              />
-            </PoseItem>
-          ))}
-        </PoseGroup>
-      </Container>
+        <VideoContainer>
+          <PoseGroup>
+            {videos.map(item => (
+              <PoseItem key={item.id}>
+                <Game
+                  id={item.id}
+                  title={item.snippet.title}
+                  thumbnail={item.snippet.thumbnails.high.url}
+                  videoId={item.snippet.resourceId.videoId}
+                />
+              </PoseItem>
+            ))}
+          </PoseGroup>
+        </VideoContainer>
+      </Wrapper>
     );
   }
 }

@@ -3,17 +3,20 @@ import YouTube from 'react-youtube';
 import styled from 'styled-components';
 import GameDetails from '../GameDetails';
 
+const VideoWrapper = styled.div`
+  width: 100%;
+`;
+
 const Text = styled.p`
   color: rgba(4, 15, 26, 0.7);
   background: white;
   padding: 10px;
   margin: 40px 0px 30px 0px;
-  border-radius: 4px;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 0px;
 `;
 
 const Thumbnail = styled.div`
-  border-radius: 4px;
+  border-radius: 8px;
   cursor: pointer;
   height: 175px;
   display: flex;
@@ -22,17 +25,18 @@ const Thumbnail = styled.div`
   width: 100%;
   overflow: hidden;
   box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.2);
+  background: url(${props => props.src});
+  background-position: center -46px;
 `;
 
 const Image = styled.img`
   height: auto;
   width: 100%;
-  margin-top: 75px;
 
   @media (min-width: 600px) {
     height: 360px;
-    width: 480px;
   }
+
 `;
 
 class Game extends Component {
@@ -43,7 +47,7 @@ class Game extends Component {
   render() {
     const playerOptions = {
       height: 270,
-      width: 480,
+      width: '100%',
       playerVars: {
         // https://developers.google.com/youtube/player_parameters
         autoplay: 1,
@@ -53,21 +57,21 @@ class Game extends Component {
     const { thumbnail, title, videoId } = this.props;
     const { showVideo } = this.state;
     return (
-      <div>
+      <VideoWrapper>
         <Text>{title.replace('Condensed Game:', '').replace('@', 'VS')}</Text>
         {/* <GameDetails videoTitle={title} /> */}
         <Thumbnail
           className="gameThumbnail"
+          showVideo
+          src={thumbnail}
           onClick={
             !showVideo
               ? () => this.setState({ showVideo: true })
               : () => this.setState({ showVideo: false })
           }
-        >
-          <Image src={thumbnail} />
-        </Thumbnail>
+        />
         {showVideo ? <YouTube videoId={videoId} opts={playerOptions} /> : null}
-      </div>
+      </VideoWrapper>
     );
   }
 }
