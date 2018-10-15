@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createContext, Fragment } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 import posed, { PoseGroup } from 'react-pose';
@@ -31,6 +31,7 @@ class LatestGames extends Component {
     videos: [],
     loaded: false,
     initState: true,
+    spoiler: false,
     resetState: [],
   };
 
@@ -43,25 +44,40 @@ class LatestGames extends Component {
 
   resetTeams = () => {
     const { resetState, initState } = this.state;
-    this.setState({ videos: resetState, initState: true });
+    this.setState({ videos: resetState, initState: true, spoiler: false });
   }
 
-  componentDidMount = async () => {
+  getVideos = async (type) => {
+    const nonSpoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHInmjsLcBuqeSV256FqlOO&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
+    const spoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
     const {
       data: { items },
     } = await axios.get(
-      'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHInmjsLcBuqeSV256FqlOO&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ',
+      type === 'spoiler' ? spoilerVideos : nonSpoilerVideos,
     );
+
+    return items;
+  }
+
+  getSpoilerGames = async () => {
+    const items = await this.getVideos('spoiler');
+
+    this.setState({ videos: items, initState: false, spoiler: true });
+  }
+
+  componentDidMount = async () => {
+    const items = await this.getVideos();
 
     this.setState({ videos: items, resetState: items, loaded: true });
   };
 
   render() {
-    const { videos, initState } = this.state;
+    const { videos, initState, spoiler } = this.state;
     return (
       <Container>
         <Select onChange={e => this.favoriteTeam(e)}>{teams.map(team => <option key={team.id} value={team.teamName}>{team.name}</option>)}</Select>
         {!initState ? <Button onClick={this.resetTeams}>Reset</Button> : null}
+        {spoiler ? <p>Showing Spoiler Games</p> : <Button onClick={this.getSpoilerGames}>Change to spoiler games</Button>}
         <PoseGroup>
           {videos.map(item => (
             <PoseItem key={item.id}>
