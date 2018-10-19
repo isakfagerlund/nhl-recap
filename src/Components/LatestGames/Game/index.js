@@ -42,6 +42,11 @@ class Game extends Component {
     showVideo: false,
   };
 
+  parseGameTitle = title => title
+    .replace('Condensed Game:', '')
+    .replace('Condensed Gamed:', '')
+    .replace('@', 'VS');
+
   render() {
     const playerOptions = {
       height: 270,
@@ -56,12 +61,7 @@ class Game extends Component {
     const { showVideo } = this.state;
     return (
       <VideoWrapper>
-        <Text>
-          {title
-            .replace('Condensed Game:', '')
-            .replace('Condensed Gamed:', '')
-            .replace('@', 'VS')}
-        </Text>
+        <Text>{this.parseGameTitle(title)}</Text>
         <Thumbnail
           className="gameThumbnail"
           showVideo
