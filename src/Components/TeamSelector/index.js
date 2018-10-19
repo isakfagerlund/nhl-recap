@@ -21,19 +21,30 @@ const TeamLogo = styled.img`
   height: 2rem;
   opacity: 0.3;
 
-  &:hover {
+  &:hover,
+  &.selected {
     opacity: 1;
   }
 `;
 
 class TeamSelector extends Component {
+  isSelected = (team) => {
+    const { selectedTeams } = this.props;
+
+    return team && selectedTeams.includes(team) ? 'selected' : '';
+  };
+
   render() {
-    // const { teamOne, teamTwo } = this.props;
+    const { selectTeam } = this.props;
     return (
       <NavContainer>
         {teams.map(team => (
-          <Team key={team.id} team={team}>
-            <TeamLogo src={team.logo} alt={team.name} />
+          <Team key={team.id} team={team} onClick={() => selectTeam(team)}>
+            <TeamLogo
+              src={team.logo}
+              alt={team.name}
+              className={this.isSelected(team)}
+            />
           </Team>
         ))}
       </NavContainer>

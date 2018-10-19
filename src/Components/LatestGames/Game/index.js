@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import YouTube from 'react-youtube';
 import styled from 'styled-components';
-import GameDetails from '../GameDetails';
 
 const VideoWrapper = styled.div`
   width: 100%;
@@ -57,8 +56,12 @@ class Game extends Component {
     const { showVideo } = this.state;
     return (
       <VideoWrapper>
-        <Text>{title.replace('Condensed Game:', '').replace('@', 'VS')}</Text>
-        {/* <GameDetails videoTitle={title} /> */}
+        <Text>
+          {title
+            .replace('Condensed Game:', '')
+            .replace('Condensed Gamed:', '')
+            .replace('@', 'VS')}
+        </Text>
         <Thumbnail
           className="gameThumbnail"
           showVideo

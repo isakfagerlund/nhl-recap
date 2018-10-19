@@ -57,13 +57,7 @@ class LatestGames extends Component {
     initState: true,
     spoiler: false,
     resetState: [],
-  };
-
-  favoriteTeam = (e) => {
-    const { videos, resetState } = this.state;
-    const filtered = resetState.filter(item => item.snippet.title.includes(e.target.value));
-
-    this.setState({ videos: filtered, initState: false });
+    selectedTeams: [],
   };
 
   resetTeams = () => {
@@ -87,6 +81,17 @@ class LatestGames extends Component {
     this.setState({ videos: items, initState: false, spoiler: true });
   };
 
+  selectTeam = (team) => {
+    const { videos, resetState } = this.state;
+    const filtered = resetState.filter(item => item.snippet.title.includes(team.teamName));
+
+    this.setState({
+      videos: filtered,
+      initState: false,
+      selectedTeams: [team],
+    });
+  };
+
   componentDidMount = async () => {
     const items = await this.getVideos();
 
@@ -94,17 +99,15 @@ class LatestGames extends Component {
   };
 
   render() {
-    const { videos, initState, spoiler } = this.state;
+    const {
+      videos, initState, spoiler, selectedTeams,
+    } = this.state;
     return (
       <Wrapper>
-        <TeamSelector />
-        <Select onChange={e => this.favoriteTeam(e)}>
-          {teams.map(team => (
-            <option key={team.id} value={team.teamName}>
-              {team.name}
-            </option>
-          ))}
-        </Select>
+        <TeamSelector
+          selectTeam={this.selectTeam}
+          selectedTeams={selectedTeams}
+        />
         {!initState ? <Button onClick={this.resetTeams}>Reset</Button> : null}
         {spoiler ? (
           <p>Showing Spoiler Games</p>
