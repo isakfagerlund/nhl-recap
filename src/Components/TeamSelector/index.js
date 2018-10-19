@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import teams from '../../helpers/teams';
-import '../../index.css';
+import '../../index.scss';
 
 const NavContainer = styled.nav`
   display: grid;
@@ -25,13 +25,17 @@ const TeamLogo = styled.img`
   &.selected {
     opacity: 1;
   }
+
+  &.selected:hover {
+    opacity: 0.7;
+  }
 `;
 
 class TeamSelector extends Component {
-  isSelected = (team) => {
+  isSelected = (teamName) => {
     const { selectedTeams } = this.props;
 
-    return team && selectedTeams.includes(team) ? 'selected' : '';
+    return teamName && selectedTeams.includes(teamName) ? 'selected' : '';
   };
 
   render() {
@@ -39,11 +43,11 @@ class TeamSelector extends Component {
     return (
       <NavContainer>
         {teams.map(team => (
-          <Team key={team.id} team={team} onClick={() => selectTeam(team)}>
+          <Team key={team.id} onClick={() => selectTeam(team.teamName)}>
             <TeamLogo
               src={team.logo}
               alt={team.name}
-              className={this.isSelected(team)}
+              className={this.isSelected(team.teamName)}
             />
           </Team>
         ))}
