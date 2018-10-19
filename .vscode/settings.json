@@ -3,7 +3,7 @@
   "prettier.trailingComma": "es5",
   "prettier.eslintIntegration": true,
   "workbench.colorCustomizations": {
-    "titleBar.activeBackground": "#52b7bd",
-    "titleBar.inactiveBackground": "#52b7bd"
+    "titleBar.activeBackground": "#2D6669",
+    "titleBar.inactiveBackground": "#2D6669"
   }
 }
