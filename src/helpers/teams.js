@@ -27,6 +27,8 @@ import RedWingsLogo from '../../assets/teamLogos/red-wings.svg';
 import BlackhawksLogo from '../../assets/teamLogos/blackhawks.svg';
 import CapitalsLogo from '../../assets/teamLogos/capitals.svg';
 import TampaBayLogo from '../../assets/teamLogos/tampa-bay.svg';
+import CanadiensLogo from '../../assets/teamLogos/canadiens.svg';
+import RangersLogo from '../../assets/teamLogos/rangers.svg';
 
 const teams = [
   {
@@ -51,7 +53,7 @@ const teams = [
     abbreviation: 'NYR',
     teamName: 'Rangers',
     shortName: 'NY Rangers',
-    logo: null,
+    logo: RangersLogo,
   },
   {
     id: 4,
@@ -91,7 +93,7 @@ const teams = [
     abbreviation: 'MTL',
     teamName: 'Canadiens',
     shortName: 'Montréal',
-    logo: null,
+    logo: CanadiensLogo,
   },
   {
     id: 9,
