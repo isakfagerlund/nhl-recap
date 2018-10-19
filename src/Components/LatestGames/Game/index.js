@@ -58,7 +58,7 @@ class Game extends Component {
     return (
       <VideoWrapper>
         <Text>{title.replace('Condensed Game:', '').replace('@', 'VS')}</Text>
-        <GameDetails videoTitle={title} />
+        {/* <GameDetails videoTitle={title} /> */}
         <Thumbnail
           className="gameThumbnail"
           showVideo

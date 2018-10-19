@@ -4,6 +4,7 @@ import axios from 'axios';
 import posed, { PoseGroup } from 'react-pose';
 import Game from './Game';
 import teams from '../../helpers/teams';
+import TeamSelector from '../TeamSelector';
 
 const Wrapper = styled.div`
   text-align: center;
@@ -96,6 +97,7 @@ class LatestGames extends Component {
     const { videos, initState, spoiler } = this.state;
     return (
       <Wrapper>
+        <TeamSelector />
         <Select onChange={e => this.favoriteTeam(e)}>
           {teams.map(team => (
             <option key={team.id} value={team.teamName}>
