@@ -6,13 +6,16 @@ import '../../index.scss';
 const NavContainer = styled.nav`
   display: grid;
   grid-template-columns: repeat(31, 1fr);
-  grid-auto-rows: auto;
   grid-gap: 1rem;
-  padding: 1rem 1rem;
+  padding: 1rem;
   align-items: center;
   text-align: center;
   border-bottom: 4px solid gray;
   background: white;
+
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Team = styled.div``;
