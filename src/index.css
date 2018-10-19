@@ -9,8 +9,8 @@ body {
 }
 
 @font-face {
-  font-family: 'NHL';
-  src: local('NHL'), url(../public/fonts/NHL.ttf);
+  font-family: "NHL";
+  src: local("NHL"), url(../assets/fonts/NHL.ttf);
 }
 
 @font-face {
