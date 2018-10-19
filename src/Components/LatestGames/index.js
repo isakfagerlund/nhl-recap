@@ -54,15 +54,9 @@ class LatestGames extends Component {
   state = {
     videos: [],
     loaded: false,
-    initState: true,
     spoiler: false,
     resetState: [],
     selectedTeams: [],
-  };
-
-  resetTeams = () => {
-    const { resetState, initState } = this.state;
-    this.setState({ videos: resetState, initState: true, spoiler: false });
   };
 
   getVideos = async (type) => {
@@ -78,17 +72,24 @@ class LatestGames extends Component {
   getSpoilerGames = async () => {
     const items = await this.getVideos('spoiler');
 
-    this.setState({ videos: items, initState: false, spoiler: true });
+    this.setState({ videos: items, spoiler: true });
   };
 
-  selectTeam = (team) => {
-    const { videos, resetState } = this.state;
-    const filtered = resetState.filter(item => item.snippet.title.includes(team.teamName));
+  selectTeam = (teamName) => {
+    const { resetState, selectedTeams } = this.state;
+    let displayTeams = [...selectedTeams];
+
+    if (displayTeams.includes(teamName)) {
+      displayTeams = displayTeams.filter(item => item !== teamName);
+    } else {
+      displayTeams.push(teamName);
+    }
+
+    const filtered = resetState.filter(item => item.snippet.title.match(new RegExp(displayTeams.join('|'), 'ig')));
 
     this.setState({
       videos: filtered,
-      initState: false,
-      selectedTeams: [team],
+      selectedTeams: displayTeams,
     });
   };
 
@@ -100,7 +101,7 @@ class LatestGames extends Component {
 
   render() {
     const {
-      videos, initState, spoiler, selectedTeams,
+      videos, spoiler, selectedTeams,
     } = this.state;
     return (
       <Wrapper>
@@ -108,7 +109,6 @@ class LatestGames extends Component {
           selectTeam={this.selectTeam}
           selectedTeams={selectedTeams}
         />
-        {!initState ? <Button onClick={this.resetTeams}>Reset</Button> : null}
         {spoiler ? (
           <p>Showing Spoiler Games</p>
         ) : (
