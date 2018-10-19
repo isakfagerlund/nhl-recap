@@ -16,7 +16,7 @@ const VideoContainer = styled.div`
   grid-template-columns: 1fr;
   grid-gap: 40px;
 
-  @media (min-width: 800px){
+  @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 75px;
     margin-top: 10px;
@@ -24,10 +24,9 @@ const VideoContainer = styled.div`
     margin-right: 75px;
   }
 
-  @media (min-width: 1100px){
-    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
+  @media (min-width: 1100px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
-
 `;
 
 const Select = styled.select`
@@ -64,30 +63,28 @@ class LatestGames extends Component {
     const filtered = resetState.filter(item => item.snippet.title.includes(e.target.value));
 
     this.setState({ videos: filtered, initState: false });
-  }
+  };
 
   resetTeams = () => {
     const { resetState, initState } = this.state;
     this.setState({ videos: resetState, initState: true, spoiler: false });
-  }
+  };
 
   getVideos = async (type) => {
     const nonSpoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHInmjsLcBuqeSV256FqlOO&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
     const spoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
     const {
       data: { items },
-    } = await axios.get(
-      type === 'spoiler' ? spoilerVideos : nonSpoilerVideos,
-    );
+    } = await axios.get(type === 'spoiler' ? spoilerVideos : nonSpoilerVideos);
 
     return items;
-  }
+  };
 
   getSpoilerGames = async () => {
     const items = await this.getVideos('spoiler');
 
     this.setState({ videos: items, initState: false, spoiler: true });
-  }
+  };
 
   componentDidMount = async () => {
     const items = await this.getVideos();
@@ -99,9 +96,21 @@ class LatestGames extends Component {
     const { videos, initState, spoiler } = this.state;
     return (
       <Wrapper>
-        <Select onChange={e => this.favoriteTeam(e)}>{teams.map(team => <option key={team.id} value={team.teamName}>{team.name}</option>)}</Select>
+        <Select onChange={e => this.favoriteTeam(e)}>
+          {teams.map(team => (
+            <option key={team.id} value={team.teamName}>
+              {team.name}
+            </option>
+          ))}
+        </Select>
         {!initState ? <Button onClick={this.resetTeams}>Reset</Button> : null}
-        {spoiler ? <p>Showing Spoiler Games</p> : <Button onClick={this.getSpoilerGames}>Change to spoiler games</Button>}
+        {spoiler ? (
+          <p>Showing Spoiler Games</p>
+        ) : (
+          <Button onClick={this.getSpoilerGames}>
+            Change to spoiler games
+          </Button>
+        )}
         <VideoContainer>
           <PoseGroup>
             {videos.map(item => (

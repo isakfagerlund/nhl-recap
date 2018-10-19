@@ -36,7 +36,6 @@ const Image = styled.img`
   @media (min-width: 600px) {
     height: 360px;
   }
-
 `;
 
 class Game extends Component {
