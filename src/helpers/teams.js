@@ -21,7 +21,7 @@ import Canuckslogo from '../../assets/teamLogos/canucks.svg';
 import OilersLogo from '../../assets/teamLogos/oilers.svg';
 import AvalancheLogo from '../../assets/teamLogos/avalanche.svg';
 import FlamesLogo from '../../assets/teamLogos/flames.svg';
-import StLouisLogo from '../../assets/teamLogos/st-louis.svg';
+import BluesLogo from '../../assets/teamLogos/blues.svg';
 import PredatorsLogo from '../../assets/teamLogos/predators.svg';
 import RedWingsLogo from '../../assets/teamLogos/red-wings.svg';
 import BlackhawksLogo from '../../assets/teamLogos/blackhawks.svg';
@@ -163,7 +163,7 @@ const teams = [
     abbreviation: 'NSH',
     teamName: 'Predators',
     shortName: 'Nashville',
-    logo: null,
+    logo: PredatorsLogo,
   },
   {
     id: 19,
@@ -171,7 +171,7 @@ const teams = [
     abbreviation: 'STL',
     teamName: 'Blues',
     shortName: 'St Louis',
-    logo: StLouisLogo,
+    logo: BluesLogo,
   },
   {
     id: 20,
