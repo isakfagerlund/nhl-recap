@@ -1,6 +1,9 @@
 import React, { Component, createContext, Fragment } from 'react';
 import styled from 'styled-components';
+import InfiniteScroll from 'react-infinite-scroller';
+import ReactLoading from 'react-loading';
 import axios from 'axios';
+import uuid from 'uuid/v4';
 import posed, { PoseGroup } from 'react-pose';
 import Game from './Game';
 import teams from '../../helpers/teams';
@@ -50,21 +53,38 @@ const PoseItem = posed.div({
   exit: { opacity: 0 },
 });
 
+const LoadingWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
 class LatestGames extends Component {
   state = {
     videos: [],
-    loaded: false,
     spoiler: false,
+    nextPageToken: true,
     resetState: [],
     selectedTeams: [],
   };
 
   getVideos = async (type) => {
-    const nonSpoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHInmjsLcBuqeSV256FqlOO&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
-    const spoilerVideos = 'https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ';
+    const nonSpoilerVideos = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHInmjsLcBuqeSV256FqlOO&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ${
+      this.state.nextPageToken && this.state.nextPageToken !== true
+        ? `&pageToken=${this.state.nextPageToken}`
+        : ''
+    }`;
+    console.log('nonSpoilerVideos', nonSpoilerVideos);
+    const spoilerVideos = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ${
+      this.state.nextPageToken && this.state.nextPageToken !== true
+        ? `&pageToken=${this.state.nextPageToken}`
+        : ''
+    }`;
     const {
-      data: { items },
+      data: { items, nextPageToken },
     } = await axios.get(type === 'spoiler' ? spoilerVideos : nonSpoilerVideos);
+
+    this.setState({ nextPageToken });
 
     return items;
   };
@@ -93,16 +113,17 @@ class LatestGames extends Component {
     });
   };
 
-  componentDidMount = async () => {
+  fetchVideos = async () => {
     const items = await this.getVideos();
 
-    this.setState({ videos: items, resetState: items, loaded: true });
+    this.setState({
+      videos: this.state.videos.concat(items),
+      resetState: this.state.resetState.concat(items),
+    });
   };
 
   render() {
-    const {
-      videos, spoiler, selectedTeams,
-    } = this.state;
+    const { videos, spoiler, selectedTeams } = this.state;
     return (
       <Wrapper>
         <TeamSelector
@@ -116,20 +137,31 @@ class LatestGames extends Component {
             Change to spoiler games
           </Button>
         )} */}
-        <VideoContainer>
-          <PoseGroup>
-            {videos.map(item => (
-              <PoseItem key={item.id}>
-                <Game
-                  id={item.id}
-                  title={item.snippet.title}
-                  thumbnail={item.snippet.thumbnails.high.url}
-                  videoId={item.snippet.resourceId.videoId}
-                />
-              </PoseItem>
-            ))}
-          </PoseGroup>
-        </VideoContainer>
+        <InfiniteScroll
+          pageStart={0}
+          loadMore={this.fetchVideos}
+          hasMore={this.state.nextPageToken || false}
+          loader={(
+            <LoadingWrapper>
+              <ReactLoading type="bubbles" color="#2D6669" key={uuid()} />
+            </LoadingWrapper>
+)}
+        >
+          <VideoContainer>
+            <PoseGroup>
+              {videos.map(item => (
+                <PoseItem key={uuid()}>
+                  <Game
+                    id={item.id}
+                    title={item.snippet.title}
+                    thumbnail={item.snippet.thumbnails.high.url}
+                    videoId={item.snippet.resourceId.videoId}
+                  />
+                </PoseItem>
+              ))}
+            </PoseGroup>
+          </VideoContainer>
+        </InfiniteScroll>
       </Wrapper>
     );
   }
