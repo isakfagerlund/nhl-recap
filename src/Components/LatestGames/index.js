@@ -109,13 +109,13 @@ class LatestGames extends Component {
           selectTeam={this.selectTeam}
           selectedTeams={selectedTeams}
         />
-        {spoiler ? (
+        {/* {spoiler ? (
           <p>Showing Spoiler Games</p>
         ) : (
           <Button onClick={this.getSpoilerGames}>
             Change to spoiler games
           </Button>
-        )}
+        )} */}
         <VideoContainer>
           <PoseGroup>
             {videos.map(item => (
