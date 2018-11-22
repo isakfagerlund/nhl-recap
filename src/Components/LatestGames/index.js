@@ -19,7 +19,8 @@ const VideoContainer = styled.div`
 
   @media (min-width: 800px) {
     grid-template-columns: 1fr 1fr;
-    grid-gap: 75px;
+    grow-gap: 75px;
+    column-gap: 75px;
     margin-top: 10px;
     margin-left: 75px;
     margin-right: 75px;
