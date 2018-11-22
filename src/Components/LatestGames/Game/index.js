@@ -8,43 +8,55 @@ const VideoWrapper = styled.div`
   width: 100%;
 `;
 
-const Text = styled.p`
+const Text = styled.div`
   color: rgba(4, 15, 26, 0.7);
-  background: white;
   padding: 10px;
-  margin: 40px 0px 30px 0px;
-  border-radius: 0px;
+  margin: 40px 0px 20px 0px;
+  border-radius: 8px;
+
+  p {
+    margin: 0;
+    font-weight: bold;
+    padding-bottom: 10px;
+  }
+
+  span {
+    opacity: 0.6;
+  }
+
 `;
 
 const Thumbnail = styled.div`
   border-radius: 8px;
   cursor: pointer;
-  height: 175px;
+  height: 140px;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  box-shadow: 0px 3px 12px rgba(0, 0, 0, 0.2);
-  background: #333;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.07);
+  background: white;
   background-position: center -46px;
+  transition: transform 0.2s ease;
+
   p {
     color: white;
   }
   
   &:hover {
-    opacity: 0.8;
+    transform: scale(1.1);
   }
 
 `;
 
 const TeamLogo = styled.img`
-  height: 100px;
-  width: 100px;
+  height: 80px;
+  width: 80px;
   background: white;
   padding: 10px;
   border-radius: 8px;
-  margin: 0 15px;
+  margin: 0 25px;
 `;
 
 const LogoWrapper = styled.div`
@@ -56,6 +68,7 @@ const LogoWrapper = styled.div`
 class Game extends Component {
   state = {
     showVideo: false,
+    date: '',
     teamOne: '',
     teamTwo: '',
   };
@@ -65,20 +78,26 @@ class Game extends Component {
   }
 
   parseGameTitle = title => title
+    .slice('MMDDYY  '.length)
     .replace('Condensed Game:', '')
     .replace('Condensed Gamed:', '')
-    .replace('@', 'VS');
+    .replace('@', 'vs');
 
   parseVideoTitle = (videoTitle) => {
     const titleWords = videoTitle.replace('Condensed Game:', '').replace('Condensed Gamed:', '').split(' ');
+    // console.log(titleWords);
+    const date = moment(titleWords[0], 'MM/DD/YY').startOf('day').fromNow();
+
     let teams = titleWords
       .join(' ')
       .slice('MMDDYY  '.length)
       .split('@');
 
+
     teams = teams.map(team => findByName(team.trim()));
 
     this.setState({
+      date,
       teamOne: teams[0],
       teamTwo: teams[1],
     });
@@ -99,10 +118,15 @@ class Game extends Component {
     const {
       thumbnail, title, videoId, selectedTeams,
     } = this.props;
-    const { showVideo, teamOne, teamTwo } = this.state;
+    const {
+      showVideo, teamOne, teamTwo, date,
+    } = this.state;
     return (
       <VideoWrapper>
-        <Text>{this.parseGameTitle(title)}</Text>
+        <Text>
+          <p>{this.parseGameTitle(title)}</p>
+          <span>{date}</span>
+        </Text>
         <Thumbnail
           className="gameThumbnail"
           showVideo

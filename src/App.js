@@ -5,6 +5,7 @@ import LatestGames from './Components/LatestGames';
 
 const Container = styled.div`
   text-align: center;
+  padding-bottom: 100px;
 `;
 class App extends Component {
   render() {
