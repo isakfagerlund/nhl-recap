@@ -4,25 +4,32 @@ import teams from '../../helpers/teams';
 import '../../index.scss';
 
 const NavContainer = styled.nav`
-  display: grid;
-  grid-template-columns: repeat(31, 1fr);
-  grid-gap: 1rem;
+  display: block;
   padding: 1rem;
   align-items: center;
   text-align: center;
   border-bottom: 4px solid gray;
   background: white;
 
+  img {
+    width: 50px;
+    display: inline-block;
+  }
+
   @media screen and (max-width: 900px) {
     grid-template-columns: repeat(4, 1fr);
   }
 `;
 
-const Team = styled.div``;
+const Team = styled.div`
+  display: inline-block;
+`;
 
 const TeamLogo = styled.img`
   height: 2rem;
+  cursor: pointer;
   opacity: 0.3;
+  transition: opacity 0.2s ease-in-out;
 
   &:hover,
   &.selected {
