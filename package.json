@@ -11,6 +11,10 @@
     "start": "parcel ./src/index.html",
     "build": "parcel build ./src/index.html"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isakfagerlund/nhl-recap.git"
+  },
   "keywords": [
     "parcel",
     "react"
@@ -22,26 +26,27 @@
     "axios": "0.18.0",
     "lodash": "4.17.11",
     "moment": "2.22.2",
-    "react": "16.6.0",
-    "react-dom": "16.6.0",
-    "react-pose": "3.3.6",
+    "react": "16.7.0-alpha.2",
+    "react-dom": "16.7.0-alpha.2",
+    "react-infinite-scroller": "^1.2.2",
+    "react-pose": "4.0.2",
     "react-youtube": "7.8.0",
-    "styled-components": "4.0.2"
+    "styled-components": "4.1.1"
   },
   "devDependencies": {
-    "@babel/core": "7.1.2",
+    "@babel/core": "7.1.6",
     "@babel/plugin-proposal-class-properties": "7.1.0",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0",
-    "@babel/preset-env": "7.1.0",
+    "@babel/preset-env": "7.1.6",
     "@babel/preset-react": "7.0.0",
     "babel-eslint": "10.0.1",
-    "eslint": "5.7.0",
+    "eslint": "5.9.0",
     "eslint-config-airbnb": "17.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.11.1",
     "parcel-bundler": "1.10.3",
     "prettier-eslint": "8.8.2",
-    "sass": "1.14.3"
+    "sass": "1.15.1"
   }
 }
