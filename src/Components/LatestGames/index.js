@@ -56,6 +56,7 @@ const PoseItem = posed.div({
 const LoadingWrapper = styled.div`
   display: flex;
   width: 100%;
+  padding-top: 2rem;
   justify-content: center;
 `;
 
