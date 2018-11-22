@@ -1,8 +1,6 @@
 parser: babel-eslint
 extends: airbnb
-plugins: ['react', 'react-hooks']
 rules:
   'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }]
   'react/prefer-stateless-function': 0
-  'react-hooks/rules-of-hooks': error
   'max-len': 0
