@@ -130,20 +130,13 @@ class LatestGames extends Component {
   };
 
   render() {
-    const { videos, spoiler, selectedTeams } = this.state;
+    const { videos, selectedTeams } = this.state;
     return (
       <Wrapper>
         <TeamSelector
           selectTeam={this.selectTeam}
           selectedTeams={selectedTeams}
         />
-        {/* {spoiler ? (
-          <p>Showing Spoiler Games</p>
-        ) : (
-          <Button onClick={this.getSpoilerGames}>
-            Change to spoiler games
-          </Button>
-        )} */}
         <InfiniteScroll
           pageStart={0}
           loadMore={this.fetchVideos}
