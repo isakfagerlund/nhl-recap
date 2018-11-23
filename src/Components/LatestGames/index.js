@@ -75,7 +75,6 @@ class LatestGames extends Component {
         ? `&pageToken=${this.state.nextPageToken}`
         : ''
     }`;
-    console.log('nonSpoilerVideos', nonSpoilerVideos);
     const spoilerVideos = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ${
       this.state.nextPageToken && this.state.nextPageToken !== true
         ? `&pageToken=${this.state.nextPageToken}`
@@ -100,10 +99,12 @@ class LatestGames extends Component {
     const { resetState, selectedTeams } = this.state;
     let displayTeams = [...selectedTeams];
 
-    if (displayTeams.includes(teamName)) {
-      displayTeams = displayTeams.filter(item => item !== teamName);
-    } else {
-      displayTeams.push(teamName);
+    if (teamName) {
+      if (displayTeams.includes(teamName)) {
+        displayTeams = displayTeams.filter(item => item !== teamName);
+      } else {
+        displayTeams.push(teamName);
+      }
     }
 
     const filtered = resetState.filter(item => item.snippet.title.match(new RegExp(displayTeams.join('|'), 'ig')));
@@ -117,33 +118,31 @@ class LatestGames extends Component {
   fetchVideos = async () => {
     const items = await this.getVideos();
 
-    this.setState({
-      videos: this.state.videos.concat(items),
-      resetState: this.state.resetState.concat(items),
-    });
+    this.setState({ resetState: this.state.resetState.concat(items) });
+
+    if (this.state.selectedTeams.length !== 0) {
+      this.selectTeam();
+    } else {
+      this.setState({
+        videos: this.state.videos.concat(items),
+      });
+    }
   };
 
   render() {
-    const { videos, spoiler, selectedTeams } = this.state;
+    const { videos, selectedTeams } = this.state;
     return (
       <Wrapper>
         <TeamSelector
           selectTeam={this.selectTeam}
           selectedTeams={selectedTeams}
         />
-        {/* {spoiler ? (
-          <p>Showing Spoiler Games</p>
-        ) : (
-          <Button onClick={this.getSpoilerGames}>
-            Change to spoiler games
-          </Button>
-        )} */}
         <InfiniteScroll
           pageStart={0}
           loadMore={this.fetchVideos}
           hasMore={this.state.nextPageToken || false}
           loader={(
-            <LoadingWrapper>
+            <LoadingWrapper key={uuid()}>
               <ReactLoading type="bubbles" color="#2D6669" key={uuid()} />
             </LoadingWrapper>
 )}

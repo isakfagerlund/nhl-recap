@@ -23,7 +23,6 @@ const Text = styled.div`
   span {
     opacity: 0.6;
   }
-
 `;
 
 const Thumbnail = styled.div`
@@ -43,11 +42,10 @@ const Thumbnail = styled.div`
   p {
     color: white;
   }
-  
+
   &:hover {
     transform: scale(1.1);
   }
-
 `;
 
 const TeamLogo = styled.img`
@@ -77,22 +75,33 @@ class Game extends Component {
     this.parseVideoTitle(this.props.title);
   }
 
-  parseGameTitle = title => title
-    .slice('MMDDYY  '.length)
-    .replace('Condensed Game:', '')
-    .replace('Condensed Gamed:', '')
+  sanitizeGameTitle = title => this.parseGameTitle(title)
+    .slice('MM/DD/YY'.length)
     .replace('@', 'vs');
 
+  parseGameTitle = title => title
+    .replace('Condensed Game:', '')
+    .replace('Condensed Games:', '')
+    .replace('Condensed Gamed:', '')
+    .replace(' at ', ' @ ')
+    .replace(
+      new RegExp(
+        /((Cup Final|Second Round|First Round|Round 1|R1|ECF|WCF), Gm[0-9]):/,
+        'gi',
+      ),
+      '',
+    );
+
   parseVideoTitle = (videoTitle) => {
-    const titleWords = videoTitle.replace('Condensed Game:', '').replace('Condensed Gamed:', '').split(' ');
-    // console.log(titleWords);
-    const date = moment(titleWords[0], 'MM/DD/YY').startOf('day').fromNow();
+    const titleWords = this.parseGameTitle(videoTitle).split(' ');
+    const date = moment(titleWords[0], 'MM/DD/YY')
+      .startOf('day')
+      .fromNow();
 
     let teams = titleWords
       .join(' ')
-      .slice('MMDDYY  '.length)
+      .slice('MM/DD/YY'.length)
       .split('@');
-
 
     teams = teams.map(team => findByName(team.trim()));
 
@@ -103,7 +112,7 @@ class Game extends Component {
     });
   };
 
-  getLogo = item => item[0].logo
+  getLogo = item => item[0].logo;
 
   render() {
     const playerOptions = {
@@ -124,7 +133,7 @@ class Game extends Component {
     return (
       <VideoWrapper>
         <Text>
-          <p>{this.parseGameTitle(title)}</p>
+          <p>{this.sanitizeGameTitle(title)}</p>
           <span>{date}</span>
         </Text>
         <Thumbnail
@@ -138,12 +147,8 @@ class Game extends Component {
           }
         >
           <LogoWrapper>
-            <TeamLogo
-              src={teamOne.logo}
-            />
-            <TeamLogo
-              src={teamTwo.logo}
-            />
+            <TeamLogo src={teamOne.logo} alt={teamOne.name} />
+            <TeamLogo src={teamTwo.logo} alt={teamTwo.name} />
           </LogoWrapper>
         </Thumbnail>
         {showVideo ? <YouTube videoId={videoId} opts={playerOptions} /> : null}

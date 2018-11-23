@@ -29,6 +29,7 @@ import CapitalsLogo from '../../assets/teamLogos/capitals.svg';
 import TampaBayLogo from '../../assets/teamLogos/tampa-bay.svg';
 import CanadiensLogo from '../../assets/teamLogos/canadiens.svg';
 import RangersLogo from '../../assets/teamLogos/rangers.svg';
+import NHLLogo from '../../assets/teamLogos/nhl.svg';
 
 const teams = [
   {
@@ -283,7 +284,7 @@ const teams = [
 
 export function findByName(name) {
   const teamObject = teams.find(team => team.teamName === name);
-  return teamObject || { name };
+  return teamObject || { name, logo: NHLLogo };
 }
 
 export default teams;
