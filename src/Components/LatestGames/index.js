@@ -75,7 +75,6 @@ class LatestGames extends Component {
         ? `&pageToken=${this.state.nextPageToken}`
         : ''
     }`;
-    console.log('nonSpoilerVideos', nonSpoilerVideos);
     const spoilerVideos = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=50&playlistId=PL1NbHSfosBuHQUCC9DPnnaHqGOGYJRjQV&key=AIzaSyDFlX0LLCc1b2cZG8aBM0BoN4a8aOq6hMQ${
       this.state.nextPageToken && this.state.nextPageToken !== true
         ? `&pageToken=${this.state.nextPageToken}`
