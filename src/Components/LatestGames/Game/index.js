@@ -43,8 +43,10 @@ const Thumbnail = styled.div`
     color: white;
   }
 
-  &:hover {
-    transform: scale(1.1);
+  @media (hover: hover) { 
+    &:hover {
+      transform: scale(1.1);
+    }
   }
 `;
 
