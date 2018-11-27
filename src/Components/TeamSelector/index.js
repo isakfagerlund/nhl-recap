@@ -31,14 +31,20 @@ const TeamLogo = styled.img`
   opacity: 0.3;
   transition: opacity 0.2s ease-in-out;
 
-  &:hover,
   &.selected {
     opacity: 1;
   }
 
   &.selected:hover {
-    opacity: 0.7;
+      opacity: 0.7;
   }
+
+  @media (hover: hover) {   
+    &:hover {
+      opacity: 1;
+    }
+  }
+
 `;
 
 class TeamSelector extends Component {
